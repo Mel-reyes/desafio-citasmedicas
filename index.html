@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Citas Medicas</title>
+
+  <!-- Agrega Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+</head>
+<body>
+  <div class="container">
+    <div class="row justify-content-center mt-5">
+      <div class="col-md-4">
+        <div class="card">
+          <div class="card-body text-center">
+            <h3 class="card-title">Consultas Médicas</h3>
+            <a href="#" id="consultarBtn" class="btn btn-primary btn-block">Pacientes</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Función para realizar la solicitud de pacientes al servidor
+    const consultarPacientes = () => {
+      fetch('http://localhost:3000/usuarios') 
+        .then(response => response.json()) 
+        .then(data => {
+          // Imprime los pacientes en la consola del navegador
+          console.log(data);
+          alert('Lista de Pacientes:\n\n' + JSON.stringify(data, null, 2));
+        })
+        .catch(error => {
+          console.error('Error al obtener la lista de pacientes:', error);
+          alert('¡Se ha producido un error al obtener la lista de pacientes!');
+        });
+    };
+
+    document.getElementById('consultarBtn').addEventListener('click', consultarPacientes);
+  </script>
+</body>
+</html>
